@@ -1,0 +1,724 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Shop | MUSCLEMINT</title>
+    <meta
+      name="keywords"
+      content="gym, fitness, yoga, pilates, boxing, dance, class, sport, massage, near me"
+    />
+    <meta
+      name="description"
+      content="Check out our weekly fitness classes timetable, plan ahead and reserve a spot for your favourite fitness class."
+    />
+    <meta name="author" content="Giulia Culoma" />
+
+    <!-- CSS styles -->
+    <link rel="stylesheet" href="css/normalize.css" />
+    <link rel="stylesheet" href="css/main.css" />
+    <link rel="stylesheet" href="css/shoppage.css" />
+    <!-- Google fonts -->
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&family=Poppins:wght@400;500;700&display=swap');
+    </style>
+    <!-- jQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+  </head>
+
+  <body>
+    <!-- Header -->
+    <header>
+      <!-- Top navigation bar -->
+      <div id="topbar" class="topbar-wrapper">
+        <div class="topbar container">
+          <!-- Topbar navigation menu -->
+          <nav class="show-laptop-up">
+            <ul class="topbar__navbar">
+              <li class="topbar__navbar__item">
+                <a class="topbar__navbar__link" href="./MuscleMintHomePage.html"
+                  >Home</a
+                >
+              </li>
+              <li class="topbar__navbar__item">
+                <a class="topbar__navbar__link" href="./LinkWalletPage.html">
+                  Connect your wallet
+                </a>
+              </li>
+              <li class="topbar__navbar__item">
+                <a
+                  class="topbar__navbar__link current-page"
+                  href="./ShopPage.html"
+                >
+                  Shop
+                </a>
+              </li>
+              
+            </ul>
+          </nav>
+
+          <!-- Open drawer, only shows on laptop screen size and up -->
+          <div
+            class="topbar__menu-button drawer-switch button-icon hide-laptop-up"
+          >
+            <span class="material-symbols-outlined">menu</span>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Only shows on laptop screen size and up -->
+    <aside class="hide-laptop-up">
+      <!-- Side navigation drawer -->
+      <div id="drawer" class="drawer-wrapper">
+        <div class="drawer">
+          <!-- Drawer header -->
+          <div class="drawer__header">
+            <!-- Close drawer, only shows on laptop screen size and up -->
+            <div class="drawer__close-button drawer-switch button-icon">
+              <span class="material-symbols-outlined">close</span>
+            </div>
+          </div>
+
+          <!-- Drawer navigation menu -->
+          <nav>
+            <ul class="drawer__sidenav">
+              <li class="drawer__sidenav__item">
+                <a
+                  class="drawer__sidenav__link"
+                  href="./MuscleMintHomePage.html"
+                  >Home</a
+                >
+              </li>
+              <li class="drawer__sidenav__item">
+                <a class="drawer__sidenav__link" href="./LinkWalletPage.html">
+                  Connect your wallet
+                </a>
+              </li>
+              <li class="drawer__sidenav__item">
+                <a
+                  class="drawer__sidenav__link current-page"
+                  href="./ShopPage.html"
+                >
+                  Shop
+                </a>
+              </li>
+              <li class="drawer__sidenav__item">
+                <a
+                  class="drawer__sidenav__button button button--primary button--large button--full-width"
+                  href="./CartPage.html"
+                >
+                  Cart
+                </a>
+              </li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+
+      <!-- Drawer backdrop, block user clicks until the drawer is closed. -->
+      <div id="drawer-backdrop" class="drawer-backdrop drawer-switch"></div>
+    </aside>
+
+    <!-- Page content -->
+    <div class="page-content">
+      <!-- Main -->
+      <main>
+        <div class="main-wrapper">
+          <!-- Section -->
+          <div class="section-wrapper">
+            <!-- Section Header -->
+            <div class="section__header container">
+              <h1 class="section__header__title">Welcome MuscleMINT Shop</h1>
+              <p class="section__header__subtitle">
+                Choose how to spend your MM Token here!
+              </p>
+            </div>
+
+            <!-- Section Content -->
+            <div class="section-content container">
+              <!-- Class card wrapper -->
+              <div class="class-card-wrapper">
+                <!-- Shop card 1 -->
+                <div id="Personal Training" class="shop-card">
+                  <div class="shop-card__image">
+                    <img
+                      src="./images/PT1.webp"
+                      alt="Personal Training "
+                      width="300"
+                      height="300"
+                    />
+                  </div>
+                <a href="">
+                  <div class="shop-card__content">
+                    <h2 class="shop-card__title">Personal Training session</h2>
+                    <p class="shop-card__description">
+                      Enjoy a private session with one of our certify trainer!
+                      (50min session)
+                    </p>
+                    <p class="shop-card__price">47 MM Token</p>
+                  </div>
+                </a>
+                
+              
+                <!-- Class card 2 -->
+                <a href="">
+                <div id="Nutritional" class="shop-card">
+                  <div class="shop-card__image">
+                    <img
+                      src="./images/Nutritional.webp"
+                      alt="Nutritional consultation"
+                      width="400"
+                      height="300"
+                    />
+                  </div>
+                  <div class="shop-card__content">
+                    <h2 class="shop-card__title">Nutritional consultation</h2>
+                    <p class="shop-card__description">
+                      Buy a consultation with our nutritionist!
+                    </p>
+                    <p class="shop-card__price">60 MM Token</p>
+                  </div>
+                </div>
+              </a>
+                <!--Class card 3-->
+                <a href="">
+                <div id="Hoodie" class="shop-card">
+                  <div class="shop-card__image">
+                    <img
+                      src="./images/Hoodie1.webp"
+                      alt="Hoodie"
+                      width="300"
+                      height="300"
+                    />
+                  </div>
+                  <div class="shop-card__content">
+                    <h2 class="shop-card__title">MuscleMINT Hoodie</h2>
+                    <p class="shop-card__description">
+                      Shop our personalized hoodie! (Size in store: XS-S-M-L-XL)
+                    </p>
+                    <p class="shop-card__price">32 MM Token</p>
+                  </div>
+                </div>
+              </a>
+                <!--Class card 4-->
+                <a href="">
+                <div id="t-shirt" class="shop-card">
+                  <div class="shop-card__image">
+                    <img
+                      src="./images/T-shirt.webp"
+                      alt="T-shirt"
+                      width="300"
+                      height="300"
+                    />
+                  </div>
+                  <div class="shop-card__content">
+                    <h2 class="shop-card__title">MuscleMINT T-shirt</h2>
+                    <p class="shop-card__description">
+                      Shop our personalized T-shirt! (Size in store:
+                      XS-S-M-L-XL)
+                    </p>
+                    <p class="shop-card__price">15 MM Token</p>
+                  </div>
+                </div>
+              </a>
+                <!--Class card 5-->
+                <a href="">
+                <div id="Shorts" class="shop-card">
+                  <div class="shop-card__image">
+                    <img
+                      src="./images/Shorts.webp"
+                      alt="Shorts"
+                      width="300"
+                      height="300"
+                    />
+                  </div>
+                  <div class="shop-card__content">
+                    <h2 class="shop-card__title">MuscleMINT Shorts</h2>
+                    <p class="shop-card__description"></p>
+                  </div>
+                </div>
+                </a>
+                <!--Class card 6-->
+                <a href="">
+                <div id="Bands" class="shop-card">
+                  <div class="shop-card__image">
+                    <img
+                      src="./images/Bands1.webp"
+                      alt="Resistance bands"
+                      width="300"
+                      height="300"
+                    />
+                  </div>
+                  <div class="shop-card__content">
+                    <h2 class="shop-card__title">Resistance Bands Set</h2>
+                    <p class="shop-card__description">
+                      Premium quality resistance bands (5 different strength)
+                    </p>
+                    <p class="shop-card__price">12 MM Token</p>
+                  </div>
+                </div>
+              </a>
+                <!--Class card 7-->
+                <a href="">
+                <div id="Kettlebell" class="shop-card">
+                  <div class="shop-card__image">
+                    <img
+                      src="./images/KB.webp"
+                      alt="Kettlebell"
+                      width="300"
+                      height="300"
+                    />
+                  </div>
+                  <div class="shop-card__content">
+                    <h2 class="shop-card__title">Kettlebell</h2>
+                    <p class="shop-card__description">10kg Kettlebell</p>
+                    <p class="shop-card__price">18 MM Token</p>
+                  </div>
+                </div>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+
+      <!-- Footer -->
+      <footer>
+        <div class="footer-wrapper">
+          <div class="footer-content container">
+            <div class="footer-columns">
+              <!-- Footer information -->
+              <div class="footer-info">
+                <span>&copy;2023 MuscleMINT</span>
+
+                <!-- Footer navigation menu -->
+                <nav>
+                  <ul class="footer__nav">
+                    <li class="footer__nav__item">
+                      <a
+                        class="footer__nav__link footer-policy-link"
+                        href="./terms.html"
+                      >
+                        Terms
+                      </a>
+                    </li>
+                    <li class="footer__nav__item">
+                      <a
+                        class="footer__nav__link footer-policy-link"
+                        href="./privacy.html"
+                      >
+                        Privacy
+                      </a>
+                    </li>
+                    <li class="footer__nav__item">
+                      <a
+                        class="footer__nav__link footer-policy-link"
+                        href="./cookies.html"
+                      >
+                        Cookies
+                      </a>
+                    </li>
+                  </ul>
+                </nav>
+              </div>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <!--JavaScript file-->
+<script>
+  let account;
+
+const updateAccount = () => {
+  if (ethereum.selectedAddress) {
+    account = ethereum.selectedAddress;
+    localStorage.setItem("userAccount", account);
+    document.getElementById("userArea").innerHTML = `User Account: ${account}`;
+  } else {
+    account = null;
+    localStorage.removeItem("userAccount");
+    document.getElementById("userArea").innerHTML = `Not connected`;
+  }
+};
+
+const connectMetamask = async () => {
+  if (window.ethereum !== undefined && ethereum.isConnected()) {
+    if (!ethereum.selectedAddress) {
+      await ethereum.request({ method: "eth_requestAccounts" });
+    }
+    updateAccount();
+    ethereum.on("accountsChanged", updateAccount);
+  } else {
+    document.getElementById("userArea").innerHTML = `Connect to MetaMask`;
+  }
+};
+
+// Check if user is already connected on page load
+const storedAccount = localStorage.getItem("userAccount");
+if (storedAccount) {
+  account = storedAccount;
+  document.getElementById("userArea").innerHTML = `User Account: ${account}`;
+} else {
+  account = null;
+  document.getElementById("userArea").innerHTML = `Not connected`;
+}
+
+connectMetamask();
+
+const connectContract = async () => {
+            const ABI =[
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": true,
+				"internalType": "address",
+				"name": "owner",
+				"type": "address"
+			},
+			{
+				"indexed": true,
+				"internalType": "address",
+				"name": "spender",
+				"type": "address"
+			},
+			{
+				"indexed": false,
+				"internalType": "uint256",
+				"name": "value",
+				"type": "uint256"
+			}
+		],
+		"name": "Approval",
+		"type": "event"
+	},
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": true,
+				"internalType": "address",
+				"name": "from",
+				"type": "address"
+			},
+			{
+				"indexed": true,
+				"internalType": "address",
+				"name": "to",
+				"type": "address"
+			},
+			{
+				"indexed": false,
+				"internalType": "uint256",
+				"name": "value",
+				"type": "uint256"
+			}
+		],
+		"name": "Transfer",
+		"type": "event"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "spender",
+				"type": "address"
+			},
+			{
+				"internalType": "uint256",
+				"name": "amount",
+				"type": "uint256"
+			}
+		],
+		"name": "approve",
+		"outputs": [
+			{
+				"internalType": "bool",
+				"name": "",
+				"type": "bool"
+			}
+		],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "buyMembership",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "cancelMembership",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "claimTokens",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "spender",
+				"type": "address"
+			},
+			{
+				"internalType": "uint256",
+				"name": "subtractedValue",
+				"type": "uint256"
+			}
+		],
+		"name": "decreaseAllowance",
+		"outputs": [
+			{
+				"internalType": "bool",
+				"name": "",
+				"type": "bool"
+			}
+		],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "spender",
+				"type": "address"
+			},
+			{
+				"internalType": "uint256",
+				"name": "addedValue",
+				"type": "uint256"
+			}
+		],
+		"name": "increaseAllowance",
+		"outputs": [
+			{
+				"internalType": "bool",
+				"name": "",
+				"type": "bool"
+			}
+		],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "to",
+				"type": "address"
+			},
+			{
+				"internalType": "uint256",
+				"name": "amount",
+				"type": "uint256"
+			}
+		],
+		"name": "transfer",
+		"outputs": [
+			{
+				"internalType": "bool",
+				"name": "",
+				"type": "bool"
+			}
+		],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "from",
+				"type": "address"
+			},
+			{
+				"internalType": "address",
+				"name": "to",
+				"type": "address"
+			},
+			{
+				"internalType": "uint256",
+				"name": "amount",
+				"type": "uint256"
+			}
+		],
+		"name": "transferFrom",
+		"outputs": [
+			{
+				"internalType": "bool",
+				"name": "",
+				"type": "bool"
+			}
+		],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "_token",
+				"type": "address"
+			}
+		],
+		"stateMutability": "nonpayable",
+		"type": "constructor"
+	},
+	{
+		"inputs": [],
+		"name": "admin",
+		"outputs": [
+			{
+				"internalType": "address",
+				"name": "",
+				"type": "address"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "owner",
+				"type": "address"
+			},
+			{
+				"internalType": "address",
+				"name": "spender",
+				"type": "address"
+			}
+		],
+		"name": "allowance",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "account",
+				"type": "address"
+			}
+		],
+		"name": "balanceOf",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "decimals",
+		"outputs": [
+			{
+				"internalType": "uint8",
+				"name": "",
+				"type": "uint8"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "",
+				"type": "address"
+			}
+		],
+		"name": "members",
+		"outputs": [
+			{
+				"internalType": "bool",
+				"name": "isMember",
+				"type": "bool"
+			},
+			{
+				"internalType": "uint256",
+				"name": "lastClaimed",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "name",
+		"outputs": [
+			{
+				"internalType": "string",
+				"name": "",
+				"type": "string"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "symbol",
+		"outputs": [
+			{
+				"internalType": "string",
+				"name": "",
+				"type": "string"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "totalSupply",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	}
+]
+
+          ;  
+            const Address = "0x05E59603ffa7145e33497F9C80362CF39679705e"; // Taking Address from Remix
+            const contract = new web3.eth.Contract(ABI, Address);
+            document.getElementById("contractArea").innerHTML = "Connected to Contract"; // calling the elementID above
+        }
+
+</script>
+   
+  </body>
+</html>

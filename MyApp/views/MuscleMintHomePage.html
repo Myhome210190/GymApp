@@ -1,0 +1,687 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MUSCLEMINT</title>
+    <meta
+      name="keywords"
+      content="gym, fitness, yoga, pilates, boxing, dance, class, sport, massage, near me"
+    />
+    <meta
+      name="description"
+      content="Our modern club is more the just a gym. With our excellent equipment, we offer dedicated training areas , exciting boutique classes and versatile equipment for all fitness levels. So whether you're new to exercise or training for something specific, our transformations plan will allow you to achieve so much more in the gym. In addition to it, we also offer Sport and relaxing massages session, aimed at all kinds of athletes from the weekend jogger to world-beating professionals."
+    />
+    <meta name="author" content="Giulia Culoma" />
+
+    <!-- Preload hero image -->
+    <link rel="preload" as="image" href="images/homepic.webp" />
+    <!-- CSS styles -->
+    <link rel="stylesheet" href="css/normalize.css" />
+    <link rel="stylesheet" href="css/main.css" />
+    <link rel="stylesheet" href="css/homepage.css" />
+    <!-- Google fonts -->
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&family=Poppins:wght@400;500;700&display=swap');
+    </style>
+    <!-- jQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+  </head>
+
+  <body>
+    <!-- Header -->
+    <header>
+      <!-- Top navigation bar -->
+      <div id="topbar" class="topbar-wrapper">
+        <div class="topbar container">
+          <!-- Topbar navigation menu -->
+          <nav class="show-laptop-up">
+            <ul class="topbar__navbar">
+              <li class="topbar__navbar__item">
+                <a
+                  class="topbar__navbar__link current-page"
+                  href="./MuscleMintHomePage.html"
+                >
+                  Home
+                </a>
+              </li>
+              <li class="topbar__navbar__item">
+                <a class="topbar__navbar__link" href="./LinkWalletPage.html">
+                  Connect your wallet
+                </a>
+              </li>
+              <li class="topbar__navbar__item">
+                <a class="topbar__navbar__link" href="./ShopPage.html">
+                  Shop
+                </a>
+              </li>
+              <li class="topbar__navbar__item">
+                <a
+                  class="topbar__navbar__button button button--primary button--small"
+                  href="./CartPage.html"
+                >
+                  Cart
+                </a>
+              </li>
+            </ul>
+          </nav>
+
+          <!-- Open drawer, only shows on laptop screen size and up -->
+          <div
+            class="topbar__menu-button drawer-switch button-icon hide-laptop-up"
+          >
+            <span class="material-symbols-outlined">menu</span>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Only shows on laptop screen size and up -->
+    <aside class="hide-laptop-up">
+      <!-- Side navigation drawer -->
+      <div id="drawer" class="drawer-wrapper">
+        <div class="drawer">
+          <!-- Drawer header -->
+          <div class="drawer__header">
+            <!-- Close drawer, only shows on laptop screen size and up -->
+            <div class="drawer__close-button drawer-switch button-icon">
+              <span class="material-symbols-outlined">close</span>
+            </div>
+          </div>
+
+          <!-- Drawer navigation menu -->
+          <nav>
+            <ul class="drawer__sidenav">
+              <li class="drawer__sidenav__item">
+                <a
+                  class="drawer__sidenav__link current-page"
+                  href="MuscleMintHomePage.html"
+                >
+                  Home
+                </a>
+              </li>
+              <li class="drawer__sidenav__item">
+                <a class="drawer__sidenav__link" href="./LinkWalletPage.html">
+                  Connect your wallet
+                </a>
+              </li>
+              <li class="drawer__sidenav__item">
+                <a class="drawer__sidenav__link" href="./ShopPage.html">
+                  Shop
+                </a>
+              </li>
+              <li class="drawer__sidenav__item">
+                <a
+                  class="drawer__sidenav__button button button--primary button--large button--full-width"
+                  href="./CartPage.html"
+                >
+                  Cart
+                </a>
+              </li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+
+      <!-- Drawer backdrop, block user clicks until the drawer is closed. -->
+      <div id="drawer-backdrop" class="drawer-backdrop drawer-switch"></div>
+    </aside>
+
+    <!-- Page content -->
+    <div class="page-content">
+      <!-- Main -->
+      <main>
+        <div class="main-wrapper">
+          <!-- Homepage hero image section -->
+          <div class="homepage__hero-image section-wrapper">
+            <div class="homepage__hero-image__title">
+              <h1>MuscleMINT Fitness Center</h1>
+            </div>
+          </div>
+
+          <!-- About section -->
+          <div class="about-section section-wrapper">
+            <!-- Section Header -->
+            <div class="section__header container">
+              <h1 class="section__header__title">We are specialist in YOU</h1>
+              <p class="section__header__subtitle">
+                Write something here about gym goal
+              </p>
+            </div>
+          </div>
+
+          <!-- Classes section -->
+          <div class="classes-section section-wrapper">
+            <!-- Section Header -->
+            <div class="section__header container">
+              <h1 class="section__header__title">Here how it works</h1>
+            </div>
+
+            <!-- Section Content -->
+            <div class="section-content container">
+              <!-- Class car wrapper -->
+              <div class="class-card-wrapper">
+                <!-- Class card 1 -->
+                <div class="class-card">
+                  <div class="class-card__image">
+                    <img
+                      src="./images/membership.webp"
+                      alt="membership"
+                      width="180"
+                      height="180"
+                    />
+                  </div>
+                  <div class="class-card__content">
+                    <span class="class-card__title">60 days for 100€</span>
+                  </div>
+                </div>
+                <!-- Class card 2 -->
+                <div class="class-card">
+                  <div class="class-card__image">
+                    <img
+                      src="./images/connectCrypto.webp"
+                      alt="connect wallet"
+                      width="180"
+                      height="180"
+                    />
+                  </div>
+                  <div class="class-card__content">
+                    <span class="class-card__title"
+                      >Connect your Cryptowallet and collect MM Token in
+                      reward</span
+                    >
+                  </div>
+                </div>
+                <!--Class card 3-->
+                <div class="class-card">
+                  <div class="class-card__image">
+                    <img
+                      src="./images/shop.webp"
+                      alt="Purchase with token"
+                      width="180"
+                      height="180"
+                    />
+                  </div>
+                  <div class="class-card__content">
+                    <span class="class-card__title"
+                      >Purchase with your tokens on our online shop</span
+                    >
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Section Content -->
+            <div class="section-content container">
+              <div class="button-wrapper">
+                <a
+                  onclick="buyMembership()"
+                  class="button button--primary button--large"
+                  href=""
+                >
+                  Buy our membership
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+
+      <!-- Footer -->
+      <footer>
+        <div class="footer-wrapper">
+          <div class="footer-content container">
+            <div class="footer-columns">
+              <!-- Logo -->
+
+              <!-- Footer information -->
+              <div class="footer-info">
+                <span>&copy;2023 MuscleMINT</span>
+
+                <!-- Footer navigation menu -->
+                <nav>
+                  <ul class="footer__nav">
+                    <li class="footer__nav__item">
+                      <a
+                        class="footer__nav__link footer-policy-link"
+                        href="./terms.html"
+                      >
+                        Terms
+                      </a>
+                    </li>
+                    <li class="footer__nav__item">
+                      <a
+                        class="footer__nav__link footer-policy-link"
+                        href="./privacy.html"
+                      >
+                        Privacy
+                      </a>
+                    </li>
+                    <li class="footer__nav__item">
+                      <a
+                        class="footer__nav__link footer-policy-link"
+                        href="./cookies.html"
+                      >
+                        Cookies
+                      </a>
+                    </li>
+                  </ul>
+                </nav>
+              </div>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+
+    <!--JavaScript file-->
+    <script>
+      let account;
+
+      const updateAccount = () => {
+        if (ethereum.selectedAddress) {
+          account = ethereum.selectedAddress;
+          localStorage.setItem('userAccount', account);
+          document.getElementById(
+            'userArea'
+          ).innerHTML = `User Account: ${account}`;
+        } else {
+          account = null;
+          localStorage.removeItem('userAccount');
+          document.getElementById('userArea').innerHTML = `Not connected`;
+        }
+      };
+
+      const connectMetamask = async () => {
+        if (window.ethereum !== undefined && ethereum.isConnected()) {
+          if (!ethereum.selectedAddress) {
+            await ethereum.request({ method: 'eth_requestAccounts' });
+          }
+          updateAccount();
+          ethereum.on('accountsChanged', updateAccount);
+        } else {
+          document.getElementById('userArea').innerHTML = `Connect to MetaMask`;
+        }
+      };
+
+      // Check if user is already connected on page load
+      const storedAccount = localStorage.getItem('userAccount');
+      if (storedAccount) {
+        account = storedAccount;
+        document.getElementById(
+          'userArea'
+        ).innerHTML = `User Account: ${account}`;
+      } else {
+        account = null;
+        document.getElementById('userArea').innerHTML = `Not connected`;
+      }
+
+      connectMetamask();
+
+      const connectContract = async () => {
+        const ABI = [
+          {
+            anonymous: false,
+            inputs: [
+              {
+                indexed: true,
+                internalType: 'address',
+                name: 'owner',
+                type: 'address',
+              },
+              {
+                indexed: true,
+                internalType: 'address',
+                name: 'spender',
+                type: 'address',
+              },
+              {
+                indexed: false,
+                internalType: 'uint256',
+                name: 'value',
+                type: 'uint256',
+              },
+            ],
+            name: 'Approval',
+            type: 'event',
+          },
+          {
+            anonymous: false,
+            inputs: [
+              {
+                indexed: true,
+                internalType: 'address',
+                name: 'from',
+                type: 'address',
+              },
+              {
+                indexed: true,
+                internalType: 'address',
+                name: 'to',
+                type: 'address',
+              },
+              {
+                indexed: false,
+                internalType: 'uint256',
+                name: 'value',
+                type: 'uint256',
+              },
+            ],
+            name: 'Transfer',
+            type: 'event',
+          },
+          {
+            inputs: [
+              {
+                internalType: 'address',
+                name: 'spender',
+                type: 'address',
+              },
+              {
+                internalType: 'uint256',
+                name: 'amount',
+                type: 'uint256',
+              },
+            ],
+            name: 'approve',
+            outputs: [
+              {
+                internalType: 'bool',
+                name: '',
+                type: 'bool',
+              },
+            ],
+            stateMutability: 'nonpayable',
+            type: 'function',
+          },
+          {
+            inputs: [],
+            name: 'buyMembership',
+            outputs: [],
+            stateMutability: 'nonpayable',
+            type: 'function',
+          },
+          {
+            inputs: [],
+            name: 'cancelMembership',
+            outputs: [],
+            stateMutability: 'nonpayable',
+            type: 'function',
+          },
+          {
+            inputs: [],
+            name: 'claimTokens',
+            outputs: [],
+            stateMutability: 'nonpayable',
+            type: 'function',
+          },
+          {
+            inputs: [
+              {
+                internalType: 'address',
+                name: 'spender',
+                type: 'address',
+              },
+              {
+                internalType: 'uint256',
+                name: 'subtractedValue',
+                type: 'uint256',
+              },
+            ],
+            name: 'decreaseAllowance',
+            outputs: [
+              {
+                internalType: 'bool',
+                name: '',
+                type: 'bool',
+              },
+            ],
+            stateMutability: 'nonpayable',
+            type: 'function',
+          },
+          {
+            inputs: [
+              {
+                internalType: 'address',
+                name: 'spender',
+                type: 'address',
+              },
+              {
+                internalType: 'uint256',
+                name: 'addedValue',
+                type: 'uint256',
+              },
+            ],
+            name: 'increaseAllowance',
+            outputs: [
+              {
+                internalType: 'bool',
+                name: '',
+                type: 'bool',
+              },
+            ],
+            stateMutability: 'nonpayable',
+            type: 'function',
+          },
+          {
+            inputs: [
+              {
+                internalType: 'address',
+                name: 'to',
+                type: 'address',
+              },
+              {
+                internalType: 'uint256',
+                name: 'amount',
+                type: 'uint256',
+              },
+            ],
+            name: 'transfer',
+            outputs: [
+              {
+                internalType: 'bool',
+                name: '',
+                type: 'bool',
+              },
+            ],
+            stateMutability: 'nonpayable',
+            type: 'function',
+          },
+          {
+            inputs: [
+              {
+                internalType: 'address',
+                name: 'from',
+                type: 'address',
+              },
+              {
+                internalType: 'address',
+                name: 'to',
+                type: 'address',
+              },
+              {
+                internalType: 'uint256',
+                name: 'amount',
+                type: 'uint256',
+              },
+            ],
+            name: 'transferFrom',
+            outputs: [
+              {
+                internalType: 'bool',
+                name: '',
+                type: 'bool',
+              },
+            ],
+            stateMutability: 'nonpayable',
+            type: 'function',
+          },
+          {
+            inputs: [
+              {
+                internalType: 'address',
+                name: '_token',
+                type: 'address',
+              },
+            ],
+            stateMutability: 'nonpayable',
+            type: 'constructor',
+          },
+          {
+            inputs: [],
+            name: 'admin',
+            outputs: [
+              {
+                internalType: 'address',
+                name: '',
+                type: 'address',
+              },
+            ],
+            stateMutability: 'view',
+            type: 'function',
+          },
+          {
+            inputs: [
+              {
+                internalType: 'address',
+                name: 'owner',
+                type: 'address',
+              },
+              {
+                internalType: 'address',
+                name: 'spender',
+                type: 'address',
+              },
+            ],
+            name: 'allowance',
+            outputs: [
+              {
+                internalType: 'uint256',
+                name: '',
+                type: 'uint256',
+              },
+            ],
+            stateMutability: 'view',
+            type: 'function',
+          },
+          {
+            inputs: [
+              {
+                internalType: 'address',
+                name: 'account',
+                type: 'address',
+              },
+            ],
+            name: 'balanceOf',
+            outputs: [
+              {
+                internalType: 'uint256',
+                name: '',
+                type: 'uint256',
+              },
+            ],
+            stateMutability: 'view',
+            type: 'function',
+          },
+          {
+            inputs: [],
+            name: 'decimals',
+            outputs: [
+              {
+                internalType: 'uint8',
+                name: '',
+                type: 'uint8',
+              },
+            ],
+            stateMutability: 'view',
+            type: 'function',
+          },
+          {
+            inputs: [
+              {
+                internalType: 'address',
+                name: '',
+                type: 'address',
+              },
+            ],
+            name: 'members',
+            outputs: [
+              {
+                internalType: 'bool',
+                name: 'isMember',
+                type: 'bool',
+              },
+              {
+                internalType: 'uint256',
+                name: 'lastClaimed',
+                type: 'uint256',
+              },
+            ],
+            stateMutability: 'view',
+            type: 'function',
+          },
+          {
+            inputs: [],
+            name: 'name',
+            outputs: [
+              {
+                internalType: 'string',
+                name: '',
+                type: 'string',
+              },
+            ],
+            stateMutability: 'view',
+            type: 'function',
+          },
+          {
+            inputs: [],
+            name: 'symbol',
+            outputs: [
+              {
+                internalType: 'string',
+                name: '',
+                type: 'string',
+              },
+            ],
+            stateMutability: 'view',
+            type: 'function',
+          },
+          {
+            inputs: [],
+            name: 'totalSupply',
+            outputs: [
+              {
+                internalType: 'uint256',
+                name: '',
+                type: 'uint256',
+              },
+            ],
+            stateMutability: 'view',
+            type: 'function',
+          },
+        ];
+
+        const Address = '0x05E59603ffa7145e33497F9C80362CF39679705e'; // Taking Address from Remix
+        const contract = new web3.eth.Contract(ABI, Address);
+        document.getElementById('contractArea').innerHTML =
+          'Connected to Contract'; // calling the elementID above
+      };
+
+      async function buyMembership() {
+        const accounts = await web3.eth.getAccounts();
+
+        // Call buyMembership function on your contract
+        const result = await contract.methods
+          .buyMembership()
+          .send({
+            from: accounts[0],
+            value: web3.utils.toWei('0.05', 'ether'),
+          });
+
+        // Log the result
+        console.log(result);
+      }
+    </script>
+  </body>
+</html>
