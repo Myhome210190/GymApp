@@ -7,6 +7,8 @@ contract MuscleMint is ERC20 {
     struct Member {
         bool isMember;
         uint256 lastClaimed;
+        uint256 joinTimestamp;
+        uint256 expireTimestamp;
     }
 
     mapping(address => Member) public members;
@@ -24,9 +26,18 @@ contract MuscleMint is ERC20 {
 
     function buyMembership() external payable {
         require(members[msg.sender].isMember == false, "Already a member");
-        require(msg.value >= 0.05 ether, "Membership costs 0'05 Ether"); // set your price here
-        _mint(msg.sender, 10);
-        members[msg.sender] = Member(true, block.timestamp);
+        require(msg.value >= 0.05 ether, "Membership costs 0'05 Ether"); 
+       
+        if (members[msg.sender].joinTimestamp == 0) {
+            // This is the first time the user buys a membership
+            _mint(msg.sender, 10);
+            members[msg.sender] = Member(true, block.timestamp, block.timestamp,  block.timestamp + 60);
+        } else if (block.timestamp > members[msg.sender].expireTimestamp) {
+            // User's previous membership has expired, and they are renewing it
+            _mint(msg.sender, 3);
+            members[msg.sender] = Member(true, members[msg.sender].lastClaimed, block.timestamp,  block.timestamp + 60);
+        }
+        
     }
 
     function claimTokens() external {
@@ -46,6 +57,6 @@ contract MuscleMint is ERC20 {
 
     function cancelMembership() external {
         require(members[msg.sender].isMember == true, "Not a member");
-        members[msg.sender].isMember = false; 
+        members[msg.sender].isMember = false;  
     }
 }
