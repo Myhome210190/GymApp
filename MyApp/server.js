@@ -1,5 +1,8 @@
 const express = require('express');
 const path = require('path');
+const Web3 = require('web3');
+const rpcURL = 'https://sepolia.infura.io/v3/b5ec3356b0c04352b7fd45618753218f'; // Your RCP URL goes here
+//const web3 = new Web3(rpcURL);
 
 const app = express();
 app.use(express.static(__dirname + '/views'));

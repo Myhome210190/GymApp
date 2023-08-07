@@ -4,6 +4,9 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<!--<script src="node_modules/web3/dist/web3.min.js"></script>-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/web3/1.2.7-rc.0/web3.min.js"></script>
     <title>Shop | MUSCLEMINT</title>
     <meta
       name="keywords"
@@ -141,7 +144,8 @@
               <!-- Class card wrapper -->
               <div class="class-card-wrapper">
                 <!-- Shop card 1 -->
-                <div id="Personal Training" class="shop-card">
+                <a onclick="buyItem(1)">
+                <div id= 1 class="shop-card">
                   <div class="shop-card__image">
                     <img
                       src="./images/PT1.webp"
@@ -150,7 +154,7 @@
                       height="300"
                     />
                   </div>
-                <a href="">
+                
                   <div class="shop-card__content">
                     <h2 class="shop-card__title">Personal Training session</h2>
                     <p class="shop-card__description">
@@ -163,8 +167,8 @@
                 
               
                 <!-- Class card 2 -->
-                <a href="">
-                <div id="Nutritional" class="shop-card">
+                <a onclick="buyItem(2)">
+                <div id= 2 class="shop-card">
                   <div class="shop-card__image">
                     <img
                       src="./images/Nutritional.webp"
@@ -183,8 +187,8 @@
                 </div>
               </a>
                 <!--Class card 3-->
-                <a href="">
-                <div id="Hoodie" class="shop-card">
+                <a onclick="buyItem(3)">
+                <div id= 3 class="shop-card">
                   <div class="shop-card__image">
                     <img
                       src="./images/Hoodie1.webp"
@@ -203,8 +207,8 @@
                 </div>
               </a>
                 <!--Class card 4-->
-                <a href="">
-                <div id="t-shirt" class="shop-card">
+                <a onclick="buyItem(4)">
+                <div id= 4 class="shop-card">
                   <div class="shop-card__image">
                     <img
                       src="./images/T-shirt.webp"
@@ -224,8 +228,8 @@
                 </div>
               </a>
                 <!--Class card 5-->
-                <a href="">
-                <div id="Shorts" class="shop-card">
+                <a onclick="buyItem(5)">
+                <div id= 5 class="shop-card">
                   <div class="shop-card__image">
                     <img
                       src="./images/Shorts.webp"
@@ -241,8 +245,8 @@
                 </div>
                 </a>
                 <!--Class card 6-->
-                <a href="">
-                <div id="Bands" class="shop-card">
+                <a onclick="buyItem(6)">
+                <div id= 6 class="shop-card">
                   <div class="shop-card__image">
                     <img
                       src="./images/Bands1.webp"
@@ -261,8 +265,8 @@
                 </div>
               </a>
                 <!--Class card 7-->
-                <a href="">
-                <div id="Kettlebell" class="shop-card">
+                <a onclick="buyItem(7)">
+                <div id= 7  class="shop-card">
                   <div class="shop-card__image">
                     <img
                       src="./images/KB.webp"
@@ -370,7 +374,12 @@ if (storedAccount) {
 connectMetamask();
 
 const connectContract = async () => {
-            const ABI =[
+            const ABI = [
+	{
+		"inputs": [],
+		"stateMutability": "nonpayable",
+		"type": "constructor"
+	},
 	{
 		"anonymous": false,
 		"inputs": [
@@ -422,6 +431,43 @@ const connectContract = async () => {
 		"type": "event"
 	},
 	{
+		"inputs": [],
+		"name": "admin",
+		"outputs": [
+			{
+				"internalType": "address",
+				"name": "",
+				"type": "address"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "owner",
+				"type": "address"
+			},
+			{
+				"internalType": "address",
+				"name": "spender",
+				"type": "address"
+			}
+		],
+		"name": "allowance",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
 		"inputs": [
 			{
 				"internalType": "address",
@@ -446,10 +492,42 @@ const connectContract = async () => {
 		"type": "function"
 	},
 	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "account",
+				"type": "address"
+			}
+		],
+		"name": "balanceOf",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "itemId",
+				"type": "uint256"
+			}
+		],
+		"name": "buyItem",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
 		"inputs": [],
 		"name": "buyMembership",
 		"outputs": [],
-		"stateMutability": "nonpayable",
+		"stateMutability": "payable",
 		"type": "function"
 	},
 	{
@@ -464,6 +542,19 @@ const connectContract = async () => {
 		"name": "claimTokens",
 		"outputs": [],
 		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "decimals",
+		"outputs": [
+			{
+				"internalType": "uint8",
+				"name": "",
+				"type": "uint8"
+			}
+		],
+		"stateMutability": "view",
 		"type": "function"
 	},
 	{
@@ -512,6 +603,116 @@ const connectContract = async () => {
 			}
 		],
 		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"name": "itemPrices",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "",
+				"type": "address"
+			}
+		],
+		"name": "members",
+		"outputs": [
+			{
+				"internalType": "bool",
+				"name": "isMember",
+				"type": "bool"
+			},
+			{
+				"internalType": "uint256",
+				"name": "lastClaimed",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "joinTimestamp",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "expireTimestamp",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "name",
+		"outputs": [
+			{
+				"internalType": "string",
+				"name": "",
+				"type": "string"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "itemId",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "price",
+				"type": "uint256"
+			}
+		],
+		"name": "setItemPrice",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "symbol",
+		"outputs": [
+			{
+				"internalType": "string",
+				"name": "",
+				"type": "string"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "totalSupply",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
 		"type": "function"
 	},
 	{
@@ -566,157 +767,35 @@ const connectContract = async () => {
 		],
 		"stateMutability": "nonpayable",
 		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "address",
-				"name": "_token",
-				"type": "address"
-			}
-		],
-		"stateMutability": "nonpayable",
-		"type": "constructor"
-	},
-	{
-		"inputs": [],
-		"name": "admin",
-		"outputs": [
-			{
-				"internalType": "address",
-				"name": "",
-				"type": "address"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "address",
-				"name": "owner",
-				"type": "address"
-			},
-			{
-				"internalType": "address",
-				"name": "spender",
-				"type": "address"
-			}
-		],
-		"name": "allowance",
-		"outputs": [
-			{
-				"internalType": "uint256",
-				"name": "",
-				"type": "uint256"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "address",
-				"name": "account",
-				"type": "address"
-			}
-		],
-		"name": "balanceOf",
-		"outputs": [
-			{
-				"internalType": "uint256",
-				"name": "",
-				"type": "uint256"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [],
-		"name": "decimals",
-		"outputs": [
-			{
-				"internalType": "uint8",
-				"name": "",
-				"type": "uint8"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "address",
-				"name": "",
-				"type": "address"
-			}
-		],
-		"name": "members",
-		"outputs": [
-			{
-				"internalType": "bool",
-				"name": "isMember",
-				"type": "bool"
-			},
-			{
-				"internalType": "uint256",
-				"name": "lastClaimed",
-				"type": "uint256"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [],
-		"name": "name",
-		"outputs": [
-			{
-				"internalType": "string",
-				"name": "",
-				"type": "string"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [],
-		"name": "symbol",
-		"outputs": [
-			{
-				"internalType": "string",
-				"name": "",
-				"type": "string"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [],
-		"name": "totalSupply",
-		"outputs": [
-			{
-				"internalType": "uint256",
-				"name": "",
-				"type": "uint256"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
 	}
 ]
 
           ;  
-            const Address = "0x05E59603ffa7145e33497F9C80362CF39679705e"; // Taking Address from Remix
-            const contract = new web3.eth.Contract(ABI, Address);
+            const Address = "0x1cc3460c74d0b78420aab6cfff39f13edb51087f"; // Taking Address from Remix
+						window.web3 = await new Web3(window.ethereum);
+            window.contract = await new window.web3.eth.Contract(ABI, Address);
+            //const contract = new web3.eth.Contract(ABI, Address);
             document.getElementById("contractArea").innerHTML = "Connected to Contract"; // calling the elementID above
         }
+
+        // Function to buy an item with the given item ID
+async function buyItem(itemId) {
+  try {
+    const accounts = await web3.eth.getAccounts();
+    const sender = accounts[0];
+
+    // Call the 'buyItem' function on the smart contract
+    const result = await contract.methods.buyItem(itemId).send({
+      from: sender,
+      gas: 300000,
+      gasPrice: web3.utils.toWei('10', 'gwei'), 
+    });
+
+    console.log(`Item with ID ${itemId} purchased successfully. Transaction hash: ${result.transactionHash}`);
+  } catch (error) {
+    console.error(`Error buying item with ID ${itemId}:`, error);
+  }
+}
 
 </script>
    

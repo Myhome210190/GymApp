@@ -4,6 +4,12 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!--<script src="node_modules/web3/dist/web3.min.js"></script>-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script
+      type="text/javascript"
+      src="https://cdnjs.cloudflare.com/ajax/libs/web3/1.2.7-rc.0/web3.min.js"
+    ></script>
     <title>MUSCLEMINT</title>
     <meta
       name="keywords"
@@ -30,6 +36,453 @@
   </head>
 
   <body>
+    <script>
+      const connectContract = async () => {
+        const ABI = [
+          {
+            inputs: [],
+            stateMutability: 'nonpayable',
+            type: 'constructor',
+          },
+          {
+            anonymous: false,
+            inputs: [
+              {
+                indexed: true,
+                internalType: 'address',
+                name: 'owner',
+                type: 'address',
+              },
+              {
+                indexed: true,
+                internalType: 'address',
+                name: 'spender',
+                type: 'address',
+              },
+              {
+                indexed: false,
+                internalType: 'uint256',
+                name: 'value',
+                type: 'uint256',
+              },
+            ],
+            name: 'Approval',
+            type: 'event',
+          },
+          {
+            anonymous: false,
+            inputs: [
+              {
+                indexed: true,
+                internalType: 'address',
+                name: 'from',
+                type: 'address',
+              },
+              {
+                indexed: true,
+                internalType: 'address',
+                name: 'to',
+                type: 'address',
+              },
+              {
+                indexed: false,
+                internalType: 'uint256',
+                name: 'value',
+                type: 'uint256',
+              },
+            ],
+            name: 'Transfer',
+            type: 'event',
+          },
+          {
+            inputs: [],
+            name: 'admin',
+            outputs: [
+              {
+                internalType: 'address',
+                name: '',
+                type: 'address',
+              },
+            ],
+            stateMutability: 'view',
+            type: 'function',
+          },
+          {
+            inputs: [
+              {
+                internalType: 'address',
+                name: 'owner',
+                type: 'address',
+              },
+              {
+                internalType: 'address',
+                name: 'spender',
+                type: 'address',
+              },
+            ],
+            name: 'allowance',
+            outputs: [
+              {
+                internalType: 'uint256',
+                name: '',
+                type: 'uint256',
+              },
+            ],
+            stateMutability: 'view',
+            type: 'function',
+          },
+          {
+            inputs: [
+              {
+                internalType: 'address',
+                name: 'spender',
+                type: 'address',
+              },
+              {
+                internalType: 'uint256',
+                name: 'amount',
+                type: 'uint256',
+              },
+            ],
+            name: 'approve',
+            outputs: [
+              {
+                internalType: 'bool',
+                name: '',
+                type: 'bool',
+              },
+            ],
+            stateMutability: 'nonpayable',
+            type: 'function',
+          },
+          {
+            inputs: [
+              {
+                internalType: 'address',
+                name: 'account',
+                type: 'address',
+              },
+            ],
+            name: 'balanceOf',
+            outputs: [
+              {
+                internalType: 'uint256',
+                name: '',
+                type: 'uint256',
+              },
+            ],
+            stateMutability: 'view',
+            type: 'function',
+          },
+          {
+            inputs: [
+              {
+                internalType: 'uint256',
+                name: 'itemId',
+                type: 'uint256',
+              },
+            ],
+            name: 'buyItem',
+            outputs: [],
+            stateMutability: 'nonpayable',
+            type: 'function',
+          },
+          {
+            inputs: [],
+            name: 'buyMembership',
+            outputs: [],
+            stateMutability: 'payable',
+            type: 'function',
+          },
+          {
+            inputs: [],
+            name: 'cancelMembership',
+            outputs: [],
+            stateMutability: 'nonpayable',
+            type: 'function',
+          },
+          {
+            inputs: [],
+            name: 'claimTokens',
+            outputs: [],
+            stateMutability: 'nonpayable',
+            type: 'function',
+          },
+          {
+            inputs: [],
+            name: 'decimals',
+            outputs: [
+              {
+                internalType: 'uint8',
+                name: '',
+                type: 'uint8',
+              },
+            ],
+            stateMutability: 'view',
+            type: 'function',
+          },
+          {
+            inputs: [
+              {
+                internalType: 'address',
+                name: 'spender',
+                type: 'address',
+              },
+              {
+                internalType: 'uint256',
+                name: 'subtractedValue',
+                type: 'uint256',
+              },
+            ],
+            name: 'decreaseAllowance',
+            outputs: [
+              {
+                internalType: 'bool',
+                name: '',
+                type: 'bool',
+              },
+            ],
+            stateMutability: 'nonpayable',
+            type: 'function',
+          },
+          {
+            inputs: [
+              {
+                internalType: 'address',
+                name: 'spender',
+                type: 'address',
+              },
+              {
+                internalType: 'uint256',
+                name: 'addedValue',
+                type: 'uint256',
+              },
+            ],
+            name: 'increaseAllowance',
+            outputs: [
+              {
+                internalType: 'bool',
+                name: '',
+                type: 'bool',
+              },
+            ],
+            stateMutability: 'nonpayable',
+            type: 'function',
+          },
+          {
+            inputs: [
+              {
+                internalType: 'uint256',
+                name: '',
+                type: 'uint256',
+              },
+            ],
+            name: 'itemPrices',
+            outputs: [
+              {
+                internalType: 'uint256',
+                name: '',
+                type: 'uint256',
+              },
+            ],
+            stateMutability: 'view',
+            type: 'function',
+          },
+          {
+            inputs: [
+              {
+                internalType: 'address',
+                name: '',
+                type: 'address',
+              },
+            ],
+            name: 'members',
+            outputs: [
+              {
+                internalType: 'bool',
+                name: 'isMember',
+                type: 'bool',
+              },
+              {
+                internalType: 'uint256',
+                name: 'lastClaimed',
+                type: 'uint256',
+              },
+              {
+                internalType: 'uint256',
+                name: 'joinTimestamp',
+                type: 'uint256',
+              },
+              {
+                internalType: 'uint256',
+                name: 'expireTimestamp',
+                type: 'uint256',
+              },
+            ],
+            stateMutability: 'view',
+            type: 'function',
+          },
+          {
+            inputs: [],
+            name: 'name',
+            outputs: [
+              {
+                internalType: 'string',
+                name: '',
+                type: 'string',
+              },
+            ],
+            stateMutability: 'view',
+            type: 'function',
+          },
+          {
+            inputs: [
+              {
+                internalType: 'uint256',
+                name: 'itemId',
+                type: 'uint256',
+              },
+              {
+                internalType: 'uint256',
+                name: 'price',
+                type: 'uint256',
+              },
+            ],
+            name: 'setItemPrice',
+            outputs: [],
+            stateMutability: 'nonpayable',
+            type: 'function',
+          },
+          {
+            inputs: [],
+            name: 'symbol',
+            outputs: [
+              {
+                internalType: 'string',
+                name: '',
+                type: 'string',
+              },
+            ],
+            stateMutability: 'view',
+            type: 'function',
+          },
+          {
+            inputs: [],
+            name: 'totalSupply',
+            outputs: [
+              {
+                internalType: 'uint256',
+                name: '',
+                type: 'uint256',
+              },
+            ],
+            stateMutability: 'view',
+            type: 'function',
+          },
+          {
+            inputs: [
+              {
+                internalType: 'address',
+                name: 'to',
+                type: 'address',
+              },
+              {
+                internalType: 'uint256',
+                name: 'amount',
+                type: 'uint256',
+              },
+            ],
+            name: 'transfer',
+            outputs: [
+              {
+                internalType: 'bool',
+                name: '',
+                type: 'bool',
+              },
+            ],
+            stateMutability: 'nonpayable',
+            type: 'function',
+          },
+          {
+            inputs: [
+              {
+                internalType: 'address',
+                name: 'from',
+                type: 'address',
+              },
+              {
+                internalType: 'address',
+                name: 'to',
+                type: 'address',
+              },
+              {
+                internalType: 'uint256',
+                name: 'amount',
+                type: 'uint256',
+              },
+            ],
+            name: 'transferFrom',
+            outputs: [
+              {
+                internalType: 'bool',
+                name: '',
+                type: 'bool',
+              },
+            ],
+            stateMutability: 'nonpayable',
+            type: 'function',
+          },
+        ];
+
+        const Address = '0x1cc3460c74d0b78420aab6cfff39f13edb51087f'; // Taking Address from Remix
+        window.web3 = await new Web3(window.ethereum);
+        window.contract = await new window.web3.eth.Contract(ABI, Address);
+
+        document.getElementById('contractArea').innerHTML =
+          'Connected to Contract'; // calling the elementID above
+      };
+
+      // calling buyMembership contract function
+      const buyMembership = async () => {
+        const accounts = await web3.eth.getAccounts();
+        await window.contract.methods.buyMembership().send({
+          from: accounts[0],
+          value: web3.utils.toWei('0.05', 'ether'),
+        });
+        document.getElementById('membershipArea').innerHTML = 'Congratulation!';
+      };
+
+      const claimTokens = async () => {
+        // Get accounts
+        const accounts = await web3.eth.getAccounts();
+        // Call claimTokens function on your contract
+        await contract.methods.claimTokens().send({ from: accounts[0] });
+
+        // Log the result
+        console.log(result);
+      };
+
+      const renewMembership = async () => {
+        // Get accounts
+        const accounts = await web3.eth.getAccounts();
+        // Call claimTokens function on your contract
+        await contract.methods.buyMembership().send({ from: accounts[0] });
+
+        // Log the result
+        console.log(result);
+      };
+
+      // Check if user is already connected on page load
+      const storedConnection = localStorage.getItem('contractArea');
+      if (storedConnection) {
+        document.getElementById(
+          'contractArea'
+        ).innerHTML = `Connected contract`;
+      } else {
+        document.getElementById('contractArea').innerHTML = `Not connected`;
+      }
+    </script>
+
     <!-- Header -->
     <header>
       <!-- Top navigation bar -->
@@ -54,14 +507,6 @@
               <li class="topbar__navbar__item">
                 <a class="topbar__navbar__link" href="./ShopPage.html">
                   Shop
-                </a>
-              </li>
-              <li class="topbar__navbar__item">
-                <a
-                  class="topbar__navbar__button button button--primary button--small"
-                  href="./CartPage.html"
-                >
-                  Cart
                 </a>
               </li>
             </ul>
@@ -109,14 +554,6 @@
               <li class="drawer__sidenav__item">
                 <a class="drawer__sidenav__link" href="./ShopPage.html">
                   Shop
-                </a>
-              </li>
-              <li class="drawer__sidenav__item">
-                <a
-                  class="drawer__sidenav__button button button--primary button--large button--full-width"
-                  href="./CartPage.html"
-                >
-                  Cart
                 </a>
               </li>
             </ul>
@@ -216,12 +653,45 @@
             <div class="section-content container">
               <div class="button-wrapper">
                 <a
+                  onclick="connectContract()"
+                  class="button button--primary button--large"
+                >
+                  Connect Contract
+                </a>
+                <p id="contractArea"></p>
+              </div>
+            </div>
+            <div class="section-content container">
+              <div class="button-wrapper">
+                <a
                   onclick="buyMembership()"
                   class="button button--primary button--large"
-                  href=""
                 >
                   Buy our membership
                 </a>
+                <p id="membershipArea"></p>
+              </div>
+            </div>
+            <div class="section-content container">
+              <div class="button-wrapper">
+                <a
+                  onclick="claimTokens()"
+                  class="button button--primary button--large"
+                >
+                  Claim your tokens reward every 30 days!
+                </a>
+                <p id="claimArea"></p>
+              </div>
+            </div>
+            <div class="section-content container">
+              <div class="button-wrapper">
+                <a
+                  onclick="renewMembership()"
+                  class="button button--primary button--large"
+                >
+                  Renew Membership
+                </a>
+                <p id="renewArea"></p>
               </div>
             </div>
           </div>
@@ -318,370 +788,6 @@
       }
 
       connectMetamask();
-
-      const connectContract = async () => {
-        const ABI = [
-          {
-            anonymous: false,
-            inputs: [
-              {
-                indexed: true,
-                internalType: 'address',
-                name: 'owner',
-                type: 'address',
-              },
-              {
-                indexed: true,
-                internalType: 'address',
-                name: 'spender',
-                type: 'address',
-              },
-              {
-                indexed: false,
-                internalType: 'uint256',
-                name: 'value',
-                type: 'uint256',
-              },
-            ],
-            name: 'Approval',
-            type: 'event',
-          },
-          {
-            anonymous: false,
-            inputs: [
-              {
-                indexed: true,
-                internalType: 'address',
-                name: 'from',
-                type: 'address',
-              },
-              {
-                indexed: true,
-                internalType: 'address',
-                name: 'to',
-                type: 'address',
-              },
-              {
-                indexed: false,
-                internalType: 'uint256',
-                name: 'value',
-                type: 'uint256',
-              },
-            ],
-            name: 'Transfer',
-            type: 'event',
-          },
-          {
-            inputs: [
-              {
-                internalType: 'address',
-                name: 'spender',
-                type: 'address',
-              },
-              {
-                internalType: 'uint256',
-                name: 'amount',
-                type: 'uint256',
-              },
-            ],
-            name: 'approve',
-            outputs: [
-              {
-                internalType: 'bool',
-                name: '',
-                type: 'bool',
-              },
-            ],
-            stateMutability: 'nonpayable',
-            type: 'function',
-          },
-          {
-            inputs: [],
-            name: 'buyMembership',
-            outputs: [],
-            stateMutability: 'nonpayable',
-            type: 'function',
-          },
-          {
-            inputs: [],
-            name: 'cancelMembership',
-            outputs: [],
-            stateMutability: 'nonpayable',
-            type: 'function',
-          },
-          {
-            inputs: [],
-            name: 'claimTokens',
-            outputs: [],
-            stateMutability: 'nonpayable',
-            type: 'function',
-          },
-          {
-            inputs: [
-              {
-                internalType: 'address',
-                name: 'spender',
-                type: 'address',
-              },
-              {
-                internalType: 'uint256',
-                name: 'subtractedValue',
-                type: 'uint256',
-              },
-            ],
-            name: 'decreaseAllowance',
-            outputs: [
-              {
-                internalType: 'bool',
-                name: '',
-                type: 'bool',
-              },
-            ],
-            stateMutability: 'nonpayable',
-            type: 'function',
-          },
-          {
-            inputs: [
-              {
-                internalType: 'address',
-                name: 'spender',
-                type: 'address',
-              },
-              {
-                internalType: 'uint256',
-                name: 'addedValue',
-                type: 'uint256',
-              },
-            ],
-            name: 'increaseAllowance',
-            outputs: [
-              {
-                internalType: 'bool',
-                name: '',
-                type: 'bool',
-              },
-            ],
-            stateMutability: 'nonpayable',
-            type: 'function',
-          },
-          {
-            inputs: [
-              {
-                internalType: 'address',
-                name: 'to',
-                type: 'address',
-              },
-              {
-                internalType: 'uint256',
-                name: 'amount',
-                type: 'uint256',
-              },
-            ],
-            name: 'transfer',
-            outputs: [
-              {
-                internalType: 'bool',
-                name: '',
-                type: 'bool',
-              },
-            ],
-            stateMutability: 'nonpayable',
-            type: 'function',
-          },
-          {
-            inputs: [
-              {
-                internalType: 'address',
-                name: 'from',
-                type: 'address',
-              },
-              {
-                internalType: 'address',
-                name: 'to',
-                type: 'address',
-              },
-              {
-                internalType: 'uint256',
-                name: 'amount',
-                type: 'uint256',
-              },
-            ],
-            name: 'transferFrom',
-            outputs: [
-              {
-                internalType: 'bool',
-                name: '',
-                type: 'bool',
-              },
-            ],
-            stateMutability: 'nonpayable',
-            type: 'function',
-          },
-          {
-            inputs: [
-              {
-                internalType: 'address',
-                name: '_token',
-                type: 'address',
-              },
-            ],
-            stateMutability: 'nonpayable',
-            type: 'constructor',
-          },
-          {
-            inputs: [],
-            name: 'admin',
-            outputs: [
-              {
-                internalType: 'address',
-                name: '',
-                type: 'address',
-              },
-            ],
-            stateMutability: 'view',
-            type: 'function',
-          },
-          {
-            inputs: [
-              {
-                internalType: 'address',
-                name: 'owner',
-                type: 'address',
-              },
-              {
-                internalType: 'address',
-                name: 'spender',
-                type: 'address',
-              },
-            ],
-            name: 'allowance',
-            outputs: [
-              {
-                internalType: 'uint256',
-                name: '',
-                type: 'uint256',
-              },
-            ],
-            stateMutability: 'view',
-            type: 'function',
-          },
-          {
-            inputs: [
-              {
-                internalType: 'address',
-                name: 'account',
-                type: 'address',
-              },
-            ],
-            name: 'balanceOf',
-            outputs: [
-              {
-                internalType: 'uint256',
-                name: '',
-                type: 'uint256',
-              },
-            ],
-            stateMutability: 'view',
-            type: 'function',
-          },
-          {
-            inputs: [],
-            name: 'decimals',
-            outputs: [
-              {
-                internalType: 'uint8',
-                name: '',
-                type: 'uint8',
-              },
-            ],
-            stateMutability: 'view',
-            type: 'function',
-          },
-          {
-            inputs: [
-              {
-                internalType: 'address',
-                name: '',
-                type: 'address',
-              },
-            ],
-            name: 'members',
-            outputs: [
-              {
-                internalType: 'bool',
-                name: 'isMember',
-                type: 'bool',
-              },
-              {
-                internalType: 'uint256',
-                name: 'lastClaimed',
-                type: 'uint256',
-              },
-            ],
-            stateMutability: 'view',
-            type: 'function',
-          },
-          {
-            inputs: [],
-            name: 'name',
-            outputs: [
-              {
-                internalType: 'string',
-                name: '',
-                type: 'string',
-              },
-            ],
-            stateMutability: 'view',
-            type: 'function',
-          },
-          {
-            inputs: [],
-            name: 'symbol',
-            outputs: [
-              {
-                internalType: 'string',
-                name: '',
-                type: 'string',
-              },
-            ],
-            stateMutability: 'view',
-            type: 'function',
-          },
-          {
-            inputs: [],
-            name: 'totalSupply',
-            outputs: [
-              {
-                internalType: 'uint256',
-                name: '',
-                type: 'uint256',
-              },
-            ],
-            stateMutability: 'view',
-            type: 'function',
-          },
-        ];
-
-        const Address = '0x05E59603ffa7145e33497F9C80362CF39679705e'; // Taking Address from Remix
-        const contract = new web3.eth.Contract(ABI, Address);
-        document.getElementById('contractArea').innerHTML =
-          'Connected to Contract'; // calling the elementID above
-      };
-
-      async function buyMembership() {
-        const accounts = await web3.eth.getAccounts();
-
-        // Call buyMembership function on your contract
-        const result = await contract.methods
-          .buyMembership()
-          .send({
-            from: accounts[0],
-            value: web3.utils.toWei('0.05', 'ether'),
-          });
-
-        // Log the result
-        console.log(result);
-      }
     </script>
   </body>
 </html>
