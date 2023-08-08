@@ -416,7 +416,7 @@
           },
         ];
 
-        const Address = '0xdc95deb74f55b189b95ed72a776542ecac58821a'; // Taking Address from Remix
+        const Address = '0xc05345bc3b05d8e6ca6f2c97ca09294cc355e174'; // Taking Address from Remix
         window.web3 = await new Web3(window.ethereum);
         window.contract = await new window.web3.eth.Contract(ABI, Address);
 
@@ -426,39 +426,143 @@
 
       // calling buyMembership contract function
       const buyMembership = async () => {
-        const accounts = await web3.eth.getAccounts();
-        await window.contract.methods.buyMembership().send({
-          from: accounts[0],
-          gas: 200000,
-          value: web3.utils.toWei('0.05', 'ether'),
-        });
-        document.getElementById('membershipArea').innerHTML = 'Congratulation!';
+        try {
+          const accounts = await web3.eth.getAccounts();
+          await window.contract.methods.buyMembership().send({
+            from: accounts[0],
+            gas: 200000,
+            value: web3.utils.toWei('0.05', 'ether'),
+          });
+          document.getElementById('membershipArea').innerHTML =
+            'Congratulation!';
+        } catch (error) {
+          if (error.code === -32016) {
+            // Check if it's a known revert message
+            const errorMessage = error.message.toLowerCase();
+            if (errorMessage.includes('already a member')) {
+              document.getElementById('membershipArea').innerHTML =
+                'You are already a member';
+            } else {
+              document.getElementById('membershipArea').innerHTML =
+                'An error occurred while purchasing membership.';
+            }
+          } else if (error.code === -32000) {
+            // Transaction failed due to low balance
+            document.getElementById('membershipArea').innerHTML =
+              'Transaction failed, check your balance!';
+          } else {
+            document.getElementById('membershipArea').innerHTML =
+              'An error occurred while purchasing membership.';
+          }
+        }
       };
 
+      // calling claimTokens contract function
       const claimTokens = async () => {
-        // Get accounts
-        const accounts = await web3.eth.getAccounts();
-        // Call claimTokens function on your contract
-        const result = await contract.methods.claimTokens().send({
-          from: accounts[0],
-          gas: 200000,
-        });
-
-        // Log the result
-        console.log(result);
+        try {
+          // Get accounts
+          const accounts = await web3.eth.getAccounts();
+          // Call claimTokens function on your contract
+          const result = await contract.methods.claimTokens().send({
+            from: accounts[0],
+            gas: 200000,
+          });
+          // Transaction successful
+          document.getElementById('claimArea').innerHTML =
+            'You received 5 MM tokens! See you in 30 days!';
+          // Log the result
+          console.log(result);
+          // catch errors
+        } catch (error) {
+          // Handle errors
+          if (error.code === -32016) {
+            // Check if it's a known revert message
+            const errorMessage = error.message.toLowerCase();
+            if (errorMessage.includes('already claimed')) {
+              document.getElementById('claimArea').innerHTML =
+                'Sorry, you have to wait a bit more to claim your tokens!';
+            } else {
+              document.getElementById('claimArea').innerHTML =
+                'An error occurred while claiming tokens.';
+            }
+          } else {
+            document.getElementById('claimArea').innerHTML =
+              'An error occurred while claiming tokens.';
+          }
+        }
       };
+
+      // Call renewMembership contract function
 
       const renewMembership = async () => {
-        // Get accounts
-        const accounts = await web3.eth.getAccounts();
-        // Call claimTokens function on your contract
-        await contract.methods.buyMembership().send({
-          from: accounts[0],
-          gas: 200000,
-        });
+        try {
+          // Get accounts
+          const accounts = await web3.eth.getAccounts();
+          // Call claimTokens function on your contract
+          await contract.methods.buyMembership().send({
+            from: accounts[0],
+            gas: 200000,
+          });
+          // Transaction successful
+          document.getElementById('renewArea').innerHTML =
+            'Congratulation! you renew your membership and received 3 MM Tokens! ';
 
-        // Log the result
-        console.log(result);
+          // Log the result
+          console.log(result);
+        } catch (error) {
+          if (error.code === -32016) {
+            // Check if it's a known revert message
+            const errorMessage = error.message.toLowerCase();
+            if (errorMessage.includes('not enough tokens')) {
+              document.getElementById('renewArea').innerHTML =
+                'An error occurred while purchasing membership: Not enough balance in the account.';
+            } else if (errorMessage.includes('membership not expired')) {
+              document.getElementById('renewArea').innerHTML =
+                'Your membership is not expired yet.';
+            } else {
+              document.getElementById('renewArea').innerHTML =
+                'An error occurred while purchasing membership.';
+            }
+          } else {
+            document.getElementById('renewArea').innerHTML =
+              'An error occurred while purchasing membership.';
+          }
+        }
+      };
+
+      // Calling cancelMembership function from contract
+      const cancelMembership = async () => {
+        try {
+          // Get accounts
+          const accounts = await web3.eth.getAccounts();
+          // Call cancelMembership function on your contract
+          const result = await contract.methods.cancelMembership().send({
+            from: accounts[0],
+            gas: 200000,
+          });
+
+          // Transaction successful
+          document.getElementById('cancelArea').innerHTML =
+            'Your membership has been cancelled! We are sorry you leave :(';
+
+          // Log the result
+          console.log(result);
+        } catch (error) {
+          if (error.code === -32016) {
+            // Check if it's a known revert message
+            const errorMessage = error.message.toLowerCase();
+            if (errorMessage.includes('not a member')) {
+              document.getElementById('cancelArea').innerHTML =
+                'You are not a member.';
+            } else {
+              document.getElementById('cancelArea').innerHTML =
+                'An error occurred while canceling membership.';
+            }
+          } else {
+            document.getElementById('cancelArea').innerHTML =
+              'An error occurred while canceling membership.';
+          }
+        }
       };
 
       // Check if user is already connected on page load
@@ -639,6 +743,8 @@
             </div>
 
             <!-- Section Content -->
+
+            <!--Button to connect to the contract -->
             <div class="section-content container">
               <div class="button-wrapper">
                 <a
@@ -650,6 +756,8 @@
                 <p id="contractArea"></p>
               </div>
             </div>
+
+            <!--Button to connect to buy a membership -->
             <div class="section-content container">
               <div class="button-wrapper">
                 <a
@@ -661,6 +769,8 @@
                 <p id="membershipArea"></p>
               </div>
             </div>
+
+            <!--Button to claim Tokens every 30 days -->
             <div class="section-content container">
               <div class="button-wrapper">
                 <a
@@ -672,6 +782,8 @@
                 <p id="claimArea"></p>
               </div>
             </div>
+
+            <!--Button to renew membership -->
             <div class="section-content container">
               <div class="button-wrapper">
                 <a
@@ -681,6 +793,19 @@
                   Renew Membership
                 </a>
                 <p id="renewArea"></p>
+              </div>
+            </div>
+
+            <!--Button to cancel membership -->
+            <div class="section-content container">
+              <div class="button-wrapper">
+                <a
+                  onclick="cancelMembership()"
+                  class="button button--primary button--large"
+                >
+                  Cancel membership
+                </a>
+                <p id="cancelArea"></p>
               </div>
             </div>
           </div>
