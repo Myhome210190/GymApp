@@ -429,6 +429,9 @@
              gas: 200000,
              gasPrice: web3.utils.toWei('10', 'gwei'), 
             });
+						 // Transaction successful
+             document.getElementById('buyItemArea').innerHTML =
+            'Congratulation! Your purchase have been successful!';
 
             console.log(`Item with ID ${itemId} purchased successfully. Transaction hash: ${result.transactionHash}`);
             } catch (error) {
@@ -575,7 +578,7 @@
                 Choose how to spend your MM Token here!
               </p>
             </div>
-
+             <p id = 'buyItemArea'></p>
             <!-- Section Content -->
             <div class="section-content container">
               <!-- Class card wrapper -->

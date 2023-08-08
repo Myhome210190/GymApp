@@ -434,7 +434,7 @@
             value: web3.utils.toWei('0.05', 'ether'),
           });
           document.getElementById('membershipArea').innerHTML =
-            'Congratulation!';
+            'Congratulation you are a member and you received 6 MM Tokens!';
         } catch (error) {
           if (error.code === -32016) {
             // Check if it's a known revert message
@@ -478,7 +478,7 @@
           if (error.code === -32016) {
             // Check if it's a known revert message
             const errorMessage = error.message.toLowerCase();
-            if (errorMessage.includes('already claimed')) {
+            if (errorMessage.includes('Already claimed')) {
               document.getElementById('claimArea').innerHTML =
                 'Sorry, you have to wait a bit more to claim your tokens!';
             } else {
