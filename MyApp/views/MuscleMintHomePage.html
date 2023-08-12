@@ -436,23 +436,17 @@
           document.getElementById('membershipArea').innerHTML =
             'Congratulation you are a member and you received 6 MM Tokens!';
         } catch (error) {
-          if (error.code === -32016) {
+          console.log(error.message);
+          if (
+            error.message.includes('Transaction has been reverted by the EVM:')
+          ) {
             // Check if it's a known revert message
-            const errorMessage = error.message.toLowerCase();
-            if (errorMessage.includes('already a member')) {
-              document.getElementById('membershipArea').innerHTML =
-                'You are already a member';
-            } else {
-              document.getElementById('membershipArea').innerHTML =
-                'An error occurred while purchasing membership.';
-            }
-          } else if (error.code === -32000) {
-            // Transaction failed due to low balance
-            document.getElementById('membershipArea').innerHTML =
-              'Transaction failed, check your balance!';
-          } else {
+
             document.getElementById('membershipArea').innerHTML =
               'An error occurred while purchasing membership.';
+          } else {
+            document.getElementById('membershipArea').innerHTML =
+              'Make sure your MetaMask is connected.';
           }
         }
       };
@@ -470,24 +464,21 @@
           // Transaction successful
           document.getElementById('claimArea').innerHTML =
             'You received 5 MM tokens! See you in 30 days!';
-          // Log the result
-          console.log(result);
+
           // catch errors
         } catch (error) {
+          console.log(error.message);
           // Handle errors
-          if (error.code === -32016) {
+          if (
+            error.message.includes('Transaction has been reverted by the EVM:')
+          ) {
             // Check if it's a known revert message
-            const errorMessage = error.message.toLowerCase();
-            if (errorMessage.includes('Already claimed')) {
-              document.getElementById('claimArea').innerHTML =
-                'Sorry, you have to wait a bit more to claim your tokens!';
-            } else {
-              document.getElementById('claimArea').innerHTML =
-                'An error occurred while claiming tokens.';
-            }
+
+            document.getElementById('claimArea').innerHTML =
+              'An error occurred while purchasing membership.';
           } else {
             document.getElementById('claimArea').innerHTML =
-              'An error occurred while claiming tokens.';
+              'Make sure your MetaMask is connected';
           }
         }
       };
@@ -502,30 +493,22 @@
           await contract.methods.buyMembership().send({
             from: accounts[0],
             gas: 200000,
+            value: web3.utils.toWei('0.05', 'ether'),
           });
           // Transaction successful
           document.getElementById('renewArea').innerHTML =
             'Congratulation! you renew your membership and received 3 MM Tokens! ';
-
-          // Log the result
-          console.log(result);
         } catch (error) {
-          if (error.code === -32016) {
+          if (
+            error.message.includes('Transaction has been reverted by the EVM:')
+          ) {
             // Check if it's a known revert message
-            const errorMessage = error.message.toLowerCase();
-            if (errorMessage.includes('not enough tokens')) {
-              document.getElementById('renewArea').innerHTML =
-                'An error occurred while purchasing membership: Not enough balance in the account.';
-            } else if (errorMessage.includes('membership not expired')) {
-              document.getElementById('renewArea').innerHTML =
-                'Your membership is not expired yet.';
-            } else {
-              document.getElementById('renewArea').innerHTML =
-                'An error occurred while purchasing membership.';
-            }
-          } else {
+
             document.getElementById('renewArea').innerHTML =
               'An error occurred while purchasing membership.';
+          } else {
+            document.getElementById('renewArea').innerHTML =
+              'Make sure your MetaMask is connected.';
           }
         }
       };
@@ -548,6 +531,7 @@
           // Log the result
           console.log(result);
         } catch (error) {
+          console.log(error);
           if (error.code === -32016) {
             // Check if it's a known revert message
             const errorMessage = error.message.toLowerCase();
@@ -560,7 +544,7 @@
             }
           } else {
             document.getElementById('cancelArea').innerHTML =
-              'An error occurred while canceling membership.';
+              'Make sure your Wallet and the Contract are connected.';
           }
         }
       };
@@ -676,7 +660,21 @@
             <div class="section__header container">
               <h1 class="section__header__title">We are specialist in YOU</h1>
               <p class="section__header__subtitle">
-                Write something here about gym goal
+                Join our innovative Token reward system! The more you workout
+                the more MM Tokens you collect!
+              </p>
+              <p class="section__header__subtitle">
+                Enjoy shopping with your tokens in our shopping area, or visit
+                the nearest NIKE store to exchange them for amazing discounts!
+              </p>
+              <p class="section__header__subtitle">
+                Follow few simple steps : LINK YOUR METAMASK WALLET -> CONNECT
+                THE CONTRACT -> BUY OUR MEMBERSHIP -> RECEIVE 6 INITIAL MM
+                TOKENS -> KEEP COLLECTING TOKENS EVERY 30 DAYS!
+              </p>
+              <p class="section__header__subtitle">
+                Remember to log in and collect your rewards token every 30 days.
+                Renew your membership every 60 days and stay fit!
               </p>
             </div>
           </div>

@@ -130,12 +130,12 @@
                   <!-- Validation message -->
                   <div id="validation-message" style="display: none"></div>
                   <!-- Submit button -->
-                  <input onclick="connectMetamask()"
+                  <a onclick="connectMetamask()"
                     id="submit-btn"
                     class="button button--primary button--large button--full-width"
                     type="submit"
                     value="Link MetaMask"
-                  />
+                  >Link MetaMAsk</a>
                   <p id="userArea"></p>
                   
                 </div>
@@ -225,16 +225,6 @@ const connectMetamask = async () => {
           ).innerHTML = `User Account: ${account}`;
   } 
 };
-
-// Check if user is already connected on page load
-const storedAccount = localStorage.getItem("userAccount");
-if (storedAccount) {
-  account = storedAccount;
-  document.getElementById("userArea").innerHTML = `User Account: ${account}`;
-} else {
-  account = null;
- 
-}
 
 connectMetamask();
 

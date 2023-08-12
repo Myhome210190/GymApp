@@ -435,7 +435,11 @@
 
             console.log(`Item with ID ${itemId} purchased successfully. Transaction hash: ${result.transactionHash}`);
             } catch (error) {
+							//catch errors
             console.error(`Error buying item with ID ${itemId}:`, error);
+						document.getElementById('buyItemArea').innerHTML =
+            'Error occurred while buy the item!';
+
             }
           
 					};
